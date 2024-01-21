@@ -3,6 +3,11 @@ import { BrowserRouter as Router, Routes,Route} from "react-router-dom"
 import Loader from "./components/Loader"
 import { lazy,Suspense } from "react"
 import  Header from './components/header'
+import Shipping from "./pages/Shipping"
+import Login from "./pages/login"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import orders from "./pages/Orders"
+import Orders from "./pages/Orders"
 const Home = lazy(()=>import("./pages/Home"))
 const Search = lazy(()=>import("./pages/Search"))
 const Cart = lazy(()=>import("./pages/Cart"))
@@ -36,6 +41,23 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+             {/* Not logged In Route */}
+             <Route
+            path="/login"
+            element={
+        
+                <Login />
+          
+            }
+          />
+        {/* Logged in Required */}
+        <Route>
+        <Route path="/shipping" element={<Shipping />}></Route>
+        <Routes>
+        {/* Other routes */}
+        <Route path="/orders" element={<Orders />} />
+      </Routes>
+        </Route>
           {/* Admin Routes */}
           <Route
             // element={
